@@ -5,13 +5,13 @@ from flask_login import LoginManager, login_user, current_user, logout_user
 from flask_socketio import SocketIO, join_room, leave_room, send
 from flask_migrate import Migrate
 
-from wtform_fields import *
-from models import *
-
 # Configure app
 app = Flask(__name__)
 app.secret_key=os.environ.get('SECRET')
 app.config['WTF_CSRF_SECRET_KEY'] = "b'f\xfa\x8b{X\x8b\x9eM\x83l\x19\xad\x84\x08\xaa"
+
+from wtform_fields import *
+from models import *
 
 # Configure database
 app.config['SQLALCHEMY_DATABASE_URI']=os.environ.get('DATABASE_URL')
