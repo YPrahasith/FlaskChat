@@ -3,6 +3,7 @@ import time
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_login import LoginManager, login_user, current_user, logout_user
 from flask_socketio import SocketIO, join_room, leave_room, send
+from flask_migrate import Migrate
 
 from wtform_fields import *
 from models import *
@@ -16,6 +17,7 @@ app.config['WTF_CSRF_SECRET_KEY'] = "b'f\xfa\x8b{X\x8b\x9eM\x83l\x19\xad\x84\x08
 app.config['SQLALCHEMY_DATABASE_URI']=os.environ.get('DATABASE_URL')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
+migrate = Migrate(app, db)
 
 # Initialize login manager
 login = LoginManager(app)
