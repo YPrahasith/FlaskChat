@@ -6,6 +6,14 @@ from flask_socketio import SocketIO, join_room, leave_room, send
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 
+from dotenv import load_dotenv
+
+load_dotenv()
+
+# Check for environment variable
+if not os.environ.get('DATABASE_URL'):
+    raise RuntimeError("DATABASE_URL is not set")
+
 # Configure app
 app = Flask(__name__)
 app.secret_key=os.environ.get('SECRET')
